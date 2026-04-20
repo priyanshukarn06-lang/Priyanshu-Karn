@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Priyanshu Karn — Visual Storyteller</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --dark: #1A1814;
+    --muted: #6B6560;
+    --accent: #C4933A;
+    --light-border: rgba(26,24,20,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-border);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--dark);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--dark); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 3rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 75% 40%, rgba(196,147,58,0.08) 0%, transparent 70%),
+      linear-gradient(160deg, #F5F0E8 0%, #EDE5D4 100%);
+  }
+
+  .hero-lines {
+    position: absolute;
+    top: 0; right: 0;
+    width: 45%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1px;
+    padding: 6rem 3rem;
+    opacity: 0.15;
+  }
+
+  .hero-line { height: 1px; background: var(--dark); transform-origin: right; }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.3rem;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-title {
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  .hero-desc {
+    font-size: 0.9rem;
+    line-height: 1.9;
+    color: var(--muted);
+    max-width: 480px;
+    margin-bottom: 3rem;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.9rem 2rem;
+    background: var(--dark);
+    color: var(--cream);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    padding: 0.9rem 2rem;
+    border: 1px solid var(--light-border);
+    color: var(--dark);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--dark);
+    transform: translateY(-1px);
+  }
+
+  .hero-award {
+    position: absolute;
+    bottom: 5rem;
+    right: 3rem;
+    text-align: right;
+    z-index: 2;
+  }
+
+  .award-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+
+  .award-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--muted);
+    max-width: 200px;
+    line-height: 1.5;
+  }
+
+  /* SECTIONS */
+  section { padding: 6rem 3rem; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .section-number {
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.1;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--light-border);
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    font-size: 0.95rem;
+    line-height: 1.95;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .about-text p strong {
+    color: var(--dark);
+    font-weight: 500;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .stat-item { border-top: 1px solid var(--light-border); padding-top: 1.25rem; }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--dark);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* EXPERIENCE */
+  .exp-list { max-width: 800px; }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--light-border);
+  }
+
+  .exp-item:first-child { border-top: 1px solid var(--light-border); }
+
+  .exp-year {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-top: 0.2rem;
+  }
+
+  .exp-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 0.4rem;
+  }
+
+  .exp-org {
+    font-size: 0.82rem;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    margin-bottom: 0.6rem;
+  }
+
+  .exp-desc {
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: var(--muted);
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    background: var(--dark);
+    cursor: pointer;
+  }
+
+  .project-card-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    transition: transform 0.4s ease;
+    position: relative;
+  }
+
+  .project-card:hover .project-card-inner { transform: scale(1.05); }
+
+  .project-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26,24,20,0.92) 0%, transparent 60%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .project-card:hover .project-overlay { opacity: 1; }
+
+  .project-always {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 1.25rem;
+    background: linear-gradient(to top, rgba(26,24,20,0.75) 0%, transparent 100%);
+  }
+
+  .project-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 400;
+    margin-bottom: 0.2rem;
+  }
+
+  .project-loc {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+  }
+
+  .project-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--light-border);
+    border-left: 1px solid var(--light-border);
+  }
+
+  .service-card {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid var(--light-border);
+    border-bottom: 1px solid var(--light-border);
+    transition: background 0.2s;
+  }
+
+  .service-card:hover { background: rgba(26,24,20,0.03); }
+
+  .service-icon {
+    font-size: 1.4rem;
+    margin-bottom: 1.25rem;
+    display: block;
+  }
+
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+  }
+
+  .service-desc {
+    font-size: 0.82rem;
+    line-height: 1.8;
+    color: var(--muted);
+  }
+
+  /* RECOGNITION */
+  .recognition-card {
+    background: var(--dark);
+    color: var(--cream);
+    padding: 4rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 900px;
+  }
+
+  .rec-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .rec-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .rec-desc {
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: rgba(245,240,232,0.65);
+  }
+
+  .rec-badge {
+    text-align: center;
+  }
+
+  .rec-badge-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 1px solid rgba(196,147,58,0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+  }
+
+  .rec-badge-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .rec-badge-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.5);
+    margin-top: 0.4rem;
+  }
+
+  .rec-badge-sub {
+    font-size: 0.75rem;
+    color: rgba(245,240,232,0.5);
+    letter-spacing: 0.06em;
+  }
+
+  /* CONTACT */
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-intro em { font-style: italic; color: var(--accent); }
+
+  .contact-sub {
+    font-size: 0.88rem;
+    line-height: 1.9;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-details { display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--light-border);
+  }
+
+  .contact-item:last-child { border-bottom: none; }
+
+  .contact-type {
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .contact-value {
+    font-size: 0.95rem;
+    color: var(--dark);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-value:hover { color: var(--accent); }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 3rem;
+    border-top: 1px solid var(--light-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--muted);
+  }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow { animation: fadeUp 0.7s ease 0.1s both; }
+  .hero-name { animation: fadeUp 0.7s ease 0.25s both; }
+  .hero-title { animation: fadeUp 0.7s ease 0.4s both; }
+  .hero-desc { animation: fadeUp 0.7s ease 0.5s both; }
+  .hero-cta { animation: fadeUp 0.7s ease 0.6s both; }
+  .hero-award { animation: fadeUp 0.7s ease 0.7s both; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1.25rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 0 1.5rem 4rem; }
+    .hero-award { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .projects-grid { grid-template-columns: 1fr 1fr; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .recognition-card { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+    footer { padding: 1.5rem; }
+  }
+
+  @media (max-width: 480px) {
+    .projects-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Priyanshu Karn</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines" aria-hidden="true">
+    <div class="hero-line" style="width:100%"></div>
+    <div class="hero-line" style="width:85%"></div>
+    <div class="hero-line" style="width:70%"></div>
+    <div class="hero-line" style="width:90%"></div>
+    <div class="hero-line" style="width:60%"></div>
+    <div class="hero-line" style="width:80%"></div>
+    <div class="hero-line" style="width:75%"></div>
+    <div class="hero-line" style="width:95%"></div>
+    <div class="hero-line" style="width:65%"></div>
+    <div class="hero-line" style="width:88%"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Visual Storyteller · Kathmandu, Nepal</p>
+    <h1 class="hero-name">Priyanshu<br><em>Karn</em></h1>
+    <p class="hero-title">Documentary Photographer & Director of Photography</p>
+    <p class="hero-desc">
+      Capturing the soul of Mithila — its rituals, its people, its unspoken stories.
+      Based in Kathmandu, working across Nepal to preserve cultural heritage
+      through the language of light and frame.
+    </p>
+    <div class="hero-cta">
+      <a href="#work" class="btn-primary">View Work</a>
+      <a href="#contact" class="btn-secondary">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-award">
+    <p class="award-label">Recognition</p>
+    <p class="award-text">Top 3 Nationwide — Nepal Tourism Board</p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-number">01</span>
+    <h2 class="section-title">About</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I am Priyanshu Karn, a visual storyteller from <strong>Janakpurdham</strong>, now working from <strong>Kathmandu</strong>.
+        I started my journey in 2020 as a wedding photographer, where storytelling through real emotions shaped my perspective.
+      </p>
+      <p>
+        Over time, my interest naturally evolved toward <strong>documentary filmmaking and event documentation</strong>,
+        pushing me to explore deeper, people-centric narratives rooted in cultural authenticity.
+      </p>
+      <p>
+        For me, documentary photography is more than capturing moments — it's about preserving human emotions,
+        untold stories, and the silent details that often go unnoticed. I have devoted myself to documenting
+        the vibrant cultural life of the <strong>Mithila region</strong>, from the quiet devotion of prayer to
+        the explosive energy of festival celebrations.
+      </p>
+      <p style="color: var(--accent); font-style: italic; font-family: 'Cormorant Garamond', serif; font-size: 1rem;">
+        Currently open to collaborative projects rooted in culture, stories, and real experiences.
+      </p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-item">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Years of experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Projects completed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Major institutions</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">Top 3</div>
+        <div class="stat-label">Nepal Tourism Board</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="background: rgba(26,24,20,0.03);">
+  <div class="section-header">
+    <span class="section-number">02</span>
+    <h2 class="section-title">Experience</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="exp-list">
+    <div class="exp-item">
+      <div class="exp-year">2023 – Present</div>
+      <div>
+        <div class="exp-role">Director of Photography</div>
+        <div class="exp-org">Bhoomi Folk Fest</div>
+        <div class="exp-desc">Led full visual direction for one of Nepal's celebrated folk music festivals — overseeing photography, videography, and visual narrative of the entire event.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-year">2022 – Present</div>
+      <div>
+        <div class="exp-role">Official Photographer</div>
+        <div class="exp-org">Janakpur Literature Festival</div>
+        <div class="exp-desc">Served as the official photographer for this prestigious cultural and literary festival, documenting authors, performers, and the spirit of literary celebration in Mithila.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-year">2022 – Present</div>
+      <div>
+        <div class="exp-role">Documentation Team Member</div>
+        <div class="exp-org">PhotoKTM</div>
+        <div class="exp-desc">Contributed to Kathmandu's leading photography collective, participating in documentation projects across Nepal's cultural and urban landscape.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-year">2022</div>
+      <div>
+        <div class="exp-role">Photographer</div>
+        <div class="exp-org">Tourism Ministry of Madhesh Province</div>
+        <div class="exp-desc">Official photography assignment documenting tourism sites and cultural landmarks across Dhanusha and Janakpurdham for the provincial government.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-year">2021</div>
+      <div>
+        <div class="exp-role">Calendar Shoot Photographer</div>
+        <div class="exp-org">Janakpurdham Sub-Metropolitan City</div>
+        <div class="exp-desc">Produced official visual assets for the municipal government's annual calendar, representing the culture, heritage, and people of Janakpurdham.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-year">2020</div>
+      <div>
+        <div class="exp-role">Freelance Photographer</div>
+        <div class="exp-org">Independent · Wedding & Events</div>
+        <div class="exp-desc">Began professional journey documenting weddings and cultural events across the Madhesh Province, developing a deep sensitivity to human emotion and storytelling.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="section-header">
+    <span class="section-number">03</span>
+    <h2 class="section-title">Selected Work</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-card-inner" style="background: #2C2420; font-size:3.5rem;">🎭</div>
+      <div class="project-overlay">
+        <div class="project-tag">Cultural Documentation</div>
+        <div class="project-name">Holi Festival</div>
+        <div class="project-loc">Kanchanwan, Mohattari</div>
+      </div>
+      <div class="project-always">
+        <div class="project-name">Holi Festival Documentation</div>
+        <div class="project-loc">Kanchanwan, Mohattari</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-card-inner" style="background: #1E2820; font-size:3.5rem;">🌾</div>
+      <div class="project-overlay">
+        <div class="project-tag">Agricultural Documentary</div>
+        <div class="project-name">Makhana Production</div>
+        <div class="project-loc">Ajgewa Village, Mohattari</div>
+      </div>
+      <div class="project-always">
+        <div class="project-name">Makhana Production Documentary</div>
+        <div class="project-loc">Ajgewa Village, Mohattari</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-card-inner" style="background: #20242C; font-size:3.5rem;">🏛️</div>
+      <div class="project-overlay">
+        <div class="project-tag">Street Photography</div>
+        <div class="project-name">Bhaktapur Durbar Square</div>
+        <div class="project-loc">Bhaktapur</div>
+      </div>
+      <div class="project-always">
+        <div class="project-name">Bhaktapur Durbar Square</div>
+        <div class="project-loc">Bhaktapur</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-card-inner" style="background: #28201E; font-size:3.5rem;">🏏</div>
+      <div class="project-overlay">
+        <div class="project-tag">Sports Documentation</div>
+        <div class="project-name">Mayor Cup T/20</div>
+        <div class="project-loc">Janakpurdham</div>
+      </div>
+      <div class="project-always">
+        <div class="project-name">Mayor Cup T/20 Tournament</div>
+        <div class="project-loc">Janakpurdham</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-card-inner" style="background: #1E2824; font-size:3.5rem;">🧒</div>
+      <div class="project-overlay">
+        <div class="project-tag">NGO Documentary</div>
+        <div class="project-name">Child Health Campaign</div>
+        <div class="project-loc">Madhesh Province</div>
+      </div>
+      <div class="project-always">
+        <div class="project-name">Child Health Awareness Campaign</div>
+        <div class="project-loc">Madhesh Province</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-card-inner" style="background: #241E20; font-size:3.5rem;">🎬</div>
+      <div class="project-overlay">
+        <div class="project-tag">Social Impact Film</div>
+        <div class="project-name">Restless Development</div>
+        <div class="project-loc">Madhesh Province</div>
+      </div>
+      <div class="project-always">
+        <div class="project-name">Restless Development Documentary</div>
+        <div class="project-loc">Madhesh Province</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" style="background: rgba(26,24,20,0.03);">
+  <div class="section-header">
+    <span class="section-number">04</span>
+    <h2 class="section-title">Services</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-icon">📸</span>
+      <div class="service-name">Documentary & Cultural Photography</div>
+      <div class="service-desc">Authentic storytelling capturing real human emotions, cultural traditions, and experiences with depth and integrity.</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🎥</span>
+      <div class="service-name">Event Documentation</div>
+      <div class="service-desc">Comprehensive photo and video coverage of weddings, festivals, corporate events, and community gatherings.</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">📱</span>
+      <div class="service-name">Social Media Content</div>
+      <div class="service-desc">Engaging visual content optimized for Instagram, Facebook, and YouTube to elevate your brand presence.</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🎬</span>
+      <div class="service-name">Videography & Short Films</div>
+      <div class="service-desc">Full production from shoot to post — promotional videos, documentaries, and visual brand storytelling.</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🎨</span>
+      <div class="service-name">Graphic Design</div>
+      <div class="service-desc">Posters, banners, logos, and social media creatives designed with a strong visual identity in mind.</div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🚁</span>
+      <div class="service-name">Drone Photography & Video</div>
+      <div class="service-desc">Aerial footage and photography for events, landscapes, real estate, and promotional campaigns.</div>
+    </div>
+  </div>
+</section>
+
+<!-- RECOGNITION -->
+<section>
+  <div class="section-header">
+    <span class="section-number">05</span>
+    <h2 class="section-title">Recognition</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="recognition-card">
+    <div>
+      <p class="rec-label">Nepal Tourism Board</p>
+      <h3 class="rec-title">Top 3 Nationwide Photography Award</h3>
+      <p class="rec-desc">A photograph was selected among the top 3 entries from across Nepal — recognized by the Nepal Tourism Board for outstanding visual storytelling that captures the spirit and beauty of Nepal.</p>
+    </div>
+    <div class="rec-badge">
+      <div class="rec-badge-circle">
+        <div class="rec-badge-num">Top 3</div>
+        <div class="rec-badge-label">Nationwide</div>
+      </div>
+      <div class="rec-badge-sub">Nepal Tourism Board</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background: rgba(26,24,20,0.03);">
+  <div class="section-header">
+    <span class="section-number">06</span>
+    <h2 class="section-title">Contact</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="contact-layout">
+    <div>
+      <h3 class="contact-intro">Let's create something <em>meaningful</em> together.</h3>
+      <p class="contact-sub">
+        Whether you're planning a documentary project, a cultural event, or need powerful visuals
+        for your brand — I'd love to hear about it. Always open to meaningful conversations
+        and creative collaborations.
+      </p>
+      <a href="mailto:working.priyanshu01@gmail.com" class="btn-primary">Send an Email</a>
+    </div>
+    <div class="contact-details">
+      <div class="contact-item">
+        <span class="contact-type">Email</span>
+        <a href="mailto:working.priyanshu01@gmail.com" class="contact-value">working.priyanshu01@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-type">Phone / WhatsApp</span>
+        <a href="https://wa.me/9779800842606" class="contact-value">+977-9800842606</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-type">Based in</span>
+        <span class="contact-value">Kathmandu, Nepal</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-type">Originally from</span>
+        <span class="contact-value">Janakpurdham, Madhesh Province</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-type">Availability</span>
+        <span class="contact-value" style="color: #3B6D11;">Open to collaborations</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Priyanshu Karn</span>
+  <span class="footer-copy">© 2025 · Visual Storyteller · Kathmandu, Nepal</span>
+</footer>
+
+</body>
+</html>
